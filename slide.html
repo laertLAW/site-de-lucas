@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel Simples</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .carrossel { position: relative; width: 750px; overflow: hidden; }
+        .slides { display: flex; transition: transform 0.5s ease; }
+        .slide { min-width: 100%; }
+        .navegacao { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); }
+        button { background: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="carrossel">
+        <div class="slides">
+            <div class="slide"><img src="imgs/imagem4.jpg.jfif" alt="Imagem 1" style="width:100%;"></div>
+            <div class="slide"><img src="imgs/imagem3.jpg.jpg" alt="Imagem 2" style="width:100%;"></div>
+            <div class="slide"><img src="imgs/imagem2.jpg.jfif" alt="Imagem 3" style="width:100%;"></div>
+            <div class="slide"><img src="imgs/ett.jfif" alt="Imagem 3" style="width:100%;"></div>
+        </div>
+        <div class="navegacao">
+            <button id="prev">❮</button>
+            <button id="next">❯</button>
+        </div>
+    </div>
+
+    <script>
+        let index = 0;
+        const slides = document.querySelector('.slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        document.getElementById('next').addEventListener('click', () => {
+            index = (index + 1) % totalSlides;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            index = (index - 1 + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+        });
+    </script>
+</body>
+</html>
